@@ -1,0 +1,25 @@
+[project]
+name = "flet-todo-android"
+version = "0.1.0"
+description = "A basic Flet To-Do application for Android with SQLAlchemy2.0"
+authors = [
+    {name = "goajos",email = "jappecremers@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dynamic = ["dependencies"]
+
+[tool.flet]
+product = "flet-todo-android"
+
+[tool.flet.app]
+path = "src"
+
+[tool.poetry]
+packages = [{include="todo_android", from="src"}]
+
+[tool.poetry.dependencies]
+flet = "0.26.0"
+SQLAlchemy = "2.0.36"
+
+
