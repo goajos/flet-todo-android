@@ -1,17 +1,14 @@
-from typing import List
-
 from todo_android.models.task_model import TaskModel
-from todo_android.schemas.task_schema import TaskSchema
 
 from .base_storage import BaseStorage
 
 
 class TaskStorage(BaseStorage):
-    def get_tasks(self) -> List[TaskSchema]:
+    def get_tasks(self):
         session = self.session()
         try:
             tasks = session.query(TaskModel).all()
-            return [TaskSchema.model_validate(task) for task in tasks]
+            return tasks
         except Exception as e:
             raise e
         finally:
@@ -23,7 +20,6 @@ class TaskStorage(BaseStorage):
             task = TaskModel(name=name)
             session.add(task)
             session.commit()
-            return TaskSchema.model_validate(task)
         except Exception as e:
             session.rollback()
             raise e
