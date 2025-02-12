@@ -1,4 +1,3 @@
-__version__ = "0.1.0"
+__version__ = '0.1.0'
 
-# TODO: export todo storage here instead!
-from .storages import BaseStorag
+from .task_service import create_task, delete_task, get_tasks, update_task

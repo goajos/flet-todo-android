@@ -1,5 +1,6 @@
 import flet as ft
 from task import Task
+from todo_android.task_service import create_task, delete_task, get_tasks, update_task
 
 
 class TodoApp(ft.Column):
@@ -21,11 +22,26 @@ class TodoApp(ft.Column):
         ]
 
     def add_clicked(self, e):
-        task = Task(self.new_task.value, self.task_delete)
-        self.tasks.controls.append(task)
+        create_task(self.new_task.value)
+        self.refresh_tasks()
         self.new_task.value = ''
         self.update()
 
+    def task_update(self, old_name, new_name):
+        update_task(old_name, new_name)
+        self.refresh_tasks()
+        self.update()
+
     def task_delete(self, task):
-        self.tasks.controls.remove(task)
+        delete_task(task.task_name)
+        self.refresh_tasks()
+        self.update()
+
+    def refresh_tasks(self):
+        self.tasks.controls.clear()
+        tasks = get_tasks()
+        for task in tasks:
+            self.tasks.controls.append(
+                Task(task.name, self.task_delete, self.task_update)
+            )
         self.update()

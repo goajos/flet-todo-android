@@ -2,8 +2,7 @@ import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-
-from todo_android.models import Base
+from todo_android.models.base import Base
 
 
 class BaseStorage:
@@ -11,7 +10,7 @@ class BaseStorage:
         db_path = os.environ['FLET_APP_STORAGE_DATA']
         db = os.path.join(db_path, 'database.db')
         os.makedirs(os.path.dirname(db), exist_ok=True)
-        engine = create_engine(f'sqlite+pysqlite:///{db}', echo=False)
+        engine = create_engine(f'sqlite+pysqlite:///{db}', echo=True)
         Base.metadata.create_all(engine)
         self.session = scoped_session(sessionmaker(bind=engine))
 
