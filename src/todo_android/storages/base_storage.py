@@ -2,7 +2,8 @@ import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from todo_android.models.base import Base
+
+from ..models.base import Base
 
 
 class BaseStorage:

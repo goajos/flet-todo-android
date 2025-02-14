@@ -7,19 +7,17 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.12"
-dynamic = ["dependencies"]
+dependencies = [
+    "flet[all]==0.26.0",
+    "SQLAlchemy==2.0.36"
+]
 
 [tool.flet]
 product = "flet-todo-android"
 
 [tool.flet.app]
-path = "src"
+path = "src" 
 
-[tool.poetry]
-packages = [{include="todo_android", from="src"}]
-
-[tool.poetry.dependencies]
-flet = "0.26.0"
-SQLAlchemy = "2.0.36"
-
-
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

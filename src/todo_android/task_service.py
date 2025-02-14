@@ -1,4 +1,4 @@
-from todo_android.storages.task_storage import TaskStorage
+from .storages.task_storage import TaskStorage
 
 ts = TaskStorage()
 

@@ -1,5 +1,4 @@
-from todo_android.models.task_model import TaskModel
-
+from ..models.task_model import TaskModel
 from .base_storage import BaseStorage
 
 
