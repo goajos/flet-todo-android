@@ -10,6 +10,8 @@ def main(page: ft.Page):
 
     todo = TodoApp()
     page.add(todo)
+    # load in the persisted tasks
+    todo.refresh_tasks()
 
 
 ft.app(main)
