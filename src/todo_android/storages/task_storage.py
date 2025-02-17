@@ -1,13 +1,16 @@
+from typing import List
+
 from ..models.task_model import TaskModel
+from ..schemas.task_schema import TaskSchema
 from .base_storage import BaseStorage
 
 
 class TaskStorage(BaseStorage):
-    def get_tasks(self):
+    def get_tasks(self) -> List[TaskSchema]:
         session = self.session()
         try:
             tasks = session.query(TaskModel).all()
-            return tasks
+            return [TaskSchema.model_validate(task) for task in tasks]
         except Exception as e:
             raise e
         finally:
@@ -19,6 +22,7 @@ class TaskStorage(BaseStorage):
             task = TaskModel(name=name)
             session.add(task)
             session.commit()
+            TaskSchema.model_validate(task)
         except Exception as e:
             session.rollback()
             raise e
@@ -31,6 +35,7 @@ class TaskStorage(BaseStorage):
             task = session.query(TaskModel).filter_by(name=old_name).first()
             task.name = new_name
             session.commit()
+            TaskSchema.model_validate(task)
         except Exception as e:
             session.rollback()
             raise e

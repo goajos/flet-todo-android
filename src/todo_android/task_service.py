@@ -1,9 +1,12 @@
+from typing import List
+
+from .schemas.task_schema import TaskSchema
 from .storages.task_storage import TaskStorage
 
 ts = TaskStorage()
 
 
-def get_tasks():
+def get_tasks() -> List[TaskSchema]:
     return ts.get_tasks()
 
 

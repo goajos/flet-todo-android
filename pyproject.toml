@@ -9,6 +9,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "flet==0.26.0",
+    "pydantic",
     "SQLAlchemy==2.0.36"
 ]
 
