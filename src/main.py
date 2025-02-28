@@ -3,6 +3,7 @@ from todo_app import TodoApp
 
 
 def main(page: ft.Page):
+    page.scroll = None
     page.padding = ft.padding.only(top=50)
     page.title = 'To-Do App'
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
