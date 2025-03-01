@@ -3,7 +3,6 @@ from todo_app import TodoApp
 
 
 def main(page: ft.Page):
-    page.scroll = None
     page.padding = ft.padding.only(top=50)
     page.title = 'To-Do App'
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -18,6 +17,7 @@ def main(page: ft.Page):
         page.update()
 
     tabs = ft.Tabs(
+        expand=True,
         tabs=[
             ft.Tab(
                 text='To-Do 1',
@@ -30,8 +30,8 @@ def main(page: ft.Page):
         ],
         on_click=refresh_tasks,
     )
-
     page.add(tabs)
+    page.update()
 
     # load in the persisted tasks
     # todo1.refresh_tasks()
